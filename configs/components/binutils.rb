@@ -1,6 +1,7 @@
 component "binutils" do |pkg, settings, platform|
   # Source-Related Metadata
-  if platform.is_solaris? && platform.os_version == "10"
+  if (platform.is_solaris? && platform.os_version == "10") ||
+     (platform.name =~ /debian-9/ && platform.architecture =~ /arm/ && platform.is_cross_compiled?)
     # Solaris 10 builds need binutils 2.27 due to a regression bug in 2.26:
     # https://sourceware.org/bugzilla/show_bug.cgi?id=19520
     pkg.version "2.27"

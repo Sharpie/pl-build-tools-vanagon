@@ -16,7 +16,8 @@ project "pl-binutils" do |proj|
   proj.vendor "Puppet Labs <info@puppetlabs.com>"
   proj.homepage "https://www.puppetlabs.com"
 
-  if platform.is_solaris? && platform.os_version == "10"
+  if (platform.is_solaris? && platform.os_version == "10") ||
+     (platform.name =~ /debian-9/ && platform.architecture =~ /arm/ && platform.is_cross_compiled?)
     proj.version "2.27"
     proj.release "2"
   end
